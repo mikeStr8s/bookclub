@@ -4,6 +4,8 @@
 
 <template>
   <main>
-    <MostRecent/>
+    <Suspense>
+      <MostRecent/>
+    </Suspense>
   </main>
 </template>

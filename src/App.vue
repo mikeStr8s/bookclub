@@ -32,6 +32,7 @@ function signOut() {
           <RouterLink to="/sign-in">Login</RouterLink>
           <RouterLink to="/register">Register</RouterLink>
         </span>
+        <RouterLink to="/create">Create</RouterLink>
       </nav>
     </div>
   </header>
