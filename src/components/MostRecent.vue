@@ -6,22 +6,18 @@
 
 <script setup>
     import { ref } from 'vue'
-    // import { getAuth } from 'firebase/auth'
-    import { getFirestore, collection, query, orderBy, limit, getDocs } from 'firebase/firestore/lite'
-    // import { useRouter } from 'vue-router'
+    import { getFirestore, collection, query, orderBy, limit, where, getDocs } from 'firebase/firestore/lite'
 
     const title = ref('')
     const body = ref('')
-    const date = ref()
-    // const router = useRouter()
 
     const db = getFirestore()
-    const q = query(collection(db, 'posts'), orderBy('date', 'desc'), limit(1))
+    const q = query(collection(db, 'articles'), orderBy('date', 'desc'), where('article_type', '==', 'post'), limit(1))
     const snapshot = await getDocs(q)
     snapshot.forEach((doc) => {
         const data = doc.data()
         title.value = data.title
-        body.value = data.body
+        body.value = data.content
     })
 </script>
 
