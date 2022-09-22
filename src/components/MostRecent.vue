@@ -1,12 +1,13 @@
 <template>
     <p><strong>Most Recent Post</strong></p>
     <p class="post-title">{{ title }}</p>
-    <p class="post-body">{{ body }}</p>
+    <p class="post-body" v-html="body"></p>
 </template>
 
 <script setup>
     import { ref } from 'vue'
     import { getFirestore, collection, query, orderBy, limit, where, getDocs } from 'firebase/firestore/lite'
+    import { marked } from 'marked'
 
     const title = ref('')
     const body = ref('')
@@ -17,7 +18,7 @@
     snapshot.forEach((doc) => {
         const data = doc.data()
         title.value = data.title
-        body.value = data.content
+        body.value = marked.parse(data.content)
     })
 </script>
 
