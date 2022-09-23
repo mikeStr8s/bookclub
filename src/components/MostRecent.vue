@@ -1,5 +1,5 @@
 <template>
-    <p><strong>Most Recent Post</strong></p>
+    <h2>Most Recent</h2>
     <p class="post-title">{{ title }}</p>
     <p class="post-body" v-html="body"></p>
 </template>
@@ -18,11 +18,15 @@
     snapshot.forEach((doc) => {
         const data = doc.data()
         title.value = data.title
+        // can create a marked renderer to add custom html rendering to the articles
         body.value = marked.parse(data.content)
     })
 </script>
 
 <style scoped>
-
+    .post-body {
+        height: 150px;
+        overflow-y: scroll;
+    }
 </style>
     
