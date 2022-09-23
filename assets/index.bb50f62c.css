@@ -1,0 +1,1 @@
+.header[data-v-427c05d9],.footer[data-v-427c05d9]{height:100px}.container{display:grid;grid-template-columns:1fr 8fr 1fr;grid-template-rows:auto;grid-template-areas:"header header header" "left-sidebar main right-sidebar" "footer footer footer"}.header{grid-area:header}.main{grid-area:main}.footer{grid-area:footer}
