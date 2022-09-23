@@ -5,7 +5,7 @@ import DropdownSelect from '../components/DropdownSelect.vue';
 </script>
 
 <template>
-  <main>
+  <main class="main">
     <Suspense>
       <MostRecent/>
     </Suspense>

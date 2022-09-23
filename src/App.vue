@@ -22,7 +22,7 @@ function signOut() {
 </script>
 
 <template>
-  <header>
+  <header class="header">
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -37,7 +37,15 @@ function signOut() {
     </div>
   </header>
   <RouterView />
+  <footer class="footer"></footer>
 </template>
 
 <style scoped>
+  .header {
+    height: 100px;
+  }
+
+  .footer {
+    height: 100px;
+  }
 </style>

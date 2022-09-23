@@ -1,2 +1,21 @@
-@import "./base.css";
+/* @import "./base.css"; */
 
+.container {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "header header header"
+    "left-sidebar main right-sidebar"
+    "footer footer footer";
+}
+
+.header {
+    grid-area: header;
+}
+.main {
+    grid-area: main;
+}
+.footer {
+    grid-area: footer;
+}
