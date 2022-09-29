@@ -36,7 +36,7 @@ function signOut() {
       </nav>
     </div>
   </header>
-  <RouterView />
+  <!-- <RouterView /> -->
   <footer class="footer"></footer>
 </template>
 
