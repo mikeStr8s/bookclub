@@ -1,26 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost');
-/* @import "./base.css"; */
+
+:root {
+    --bg-dark: #0D1B2A;
+    --bg-dark-soft: #415A77;
+    --bg-dark-mute: #778DA9;
+    --bg-dark-text: #E0E1DD;
+}
+
+/* semantic color variables for this project */
+:root {
+    --color-background: var(--bg-dark);
+    --color-background-soft: var(--bg-dark-soft);
+    --color-background-mute: var(--bg-dark-mute);
+    --color-text: var(--bg-dark-text);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
 
 body {
-    font-family: 'Jost', sans-serif;
+   min-height: 100vh;
+   margin: 0 7.5% 0 7.5%;
+   color: var(--color-text);
+   background: var(--color-background);
+   transition: color 0.5s, background-color 0.5s;
+   line-height: 1.6;
+   font-family: 'Jost', sans-serif;;
+   font-size: 15px;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    "header header header"
-    "left-sidebar main right-sidebar"
-    "footer footer footer";
-}
-
-.header {
-    grid-area: header;
-}
-.main {
-    grid-area: main;
-}
-.footer {
-    grid-area: footer;
+a {
+  text-decoration: none;
+  color: var(--color-text);
 }
