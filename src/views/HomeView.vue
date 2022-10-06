@@ -36,6 +36,7 @@
 
   .welcome > .header {
     font-size: 75px;
+    color: var(--color-text);
   }
 
   .welcome > .subheader {

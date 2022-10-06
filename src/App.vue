@@ -32,13 +32,13 @@
     padding-bottom: 10px;
 
     border-style: solid;
-    border-color: var(--color-background-mute);
+    border-color: var(--color-accent);
     border-width: 0px 0px 5px 0px;
   }
   .header-title {
     font-weight: 400;
     font-size: 20px;
-    color: var(--color-background-soft);
+    color: var(--color-text);
   }
 
   .header-author {
@@ -55,5 +55,6 @@
     display: flex;
     justify-content: space-evenly;
     gap: 10px;
+    color: var(--color-text-lite);
   }
 </style>
