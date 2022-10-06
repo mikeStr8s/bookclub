@@ -11,7 +11,7 @@
         <p class="summary">Take a look around the site! Maybe I have an article on a book you like, an opinion you want to argue over, or a rant on something narratively inconsequential. Whatever your speed, click below to start browsing.</p>
         <a href="" class="blog-btn button">Browse Articles</a>
       </div>
-      <MostRecent class="most-recent"></MostRecent>
+      <Suspense><MostRecent class="most-recent"></MostRecent></Suspense>
     </div>
     <h2></h2>
   </main>
