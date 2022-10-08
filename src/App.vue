@@ -1,4 +1,26 @@
 <script setup>
+  import { ref } from 'vue'
+  import { getAuth, onAuthStateChanged } from 'firebase/auth'
+  import { useRouter } from 'vue-router'
+
+
+  const isLoggedIn = ref(false)
+
+  const rout = useRouter()
+  const auth = getAuth()
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      isLoggedIn.value = true
+    } else {
+      isLoggedIn.value = false
+    }
+  })
+
+  function logout() {
+    auth.signOut()
+    rout.push('/')
+  }
 </script>
 
 <template>
@@ -10,6 +32,9 @@
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/register" v-if="!isLoggedIn">Create Account</RouterLink>
+      <RouterLink to="/login" v-if="!isLoggedIn">Login</RouterLink>
+      <a href="#" v-if="isLoggedIn" @click="logout">Logout</a>
     </nav>
   </header>
   <RouterView />
