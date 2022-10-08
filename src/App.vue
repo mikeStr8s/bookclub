@@ -32,6 +32,7 @@
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/create" v-if="isLoggedIn">Create</RouterLink>
       <RouterLink to="/register" v-if="!isLoggedIn">Create Account</RouterLink>
       <RouterLink to="/login" v-if="!isLoggedIn">Login</RouterLink>
       <a href="#" v-if="isLoggedIn" @click="logout">Logout</a>

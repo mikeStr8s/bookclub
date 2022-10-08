@@ -47,6 +47,12 @@ body {
    -moz-osx-font-smoothing: grayscale;
 }
 
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 a {
   text-decoration: none;
   color: var(--color-text);
