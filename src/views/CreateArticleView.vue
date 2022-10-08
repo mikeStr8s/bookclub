@@ -1,22 +1,36 @@
 <script setup>
-  // import { ref } from 'vue'
-  // import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-  // import { useRouter } from 'vue-router'
   import { marked } from 'marked'
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router'
+  import { getFirestore ,collection, addDoc } from 'firebase/firestore/lite'
 
   const text = ref('')
+  const title = ref('')
   
+  const rout = useRouter()
+  const db = getFirestore()
+
+  async function create() {
+    const docRef = await addDoc(collection(db, 'articles'), {
+      title: title.value,
+      content:text.value,
+      date: Date.now(),
+      ups: 0,
+      article_type: 'post'
+    })
+  }
 </script>
 
 <template>
   <main class="main">
+    <input type="text" placeholder="Title" v-model="title">
     <div class="editor-container">
       <textarea class="text-input" v-model="text"></textarea>
       <div class="rendered-text">
         <div class="marked-text" v-html="marked.parse(text)"></div>
       </div>
     </div>
+    <button @click="create">Submit</button>
   </main>
 </template>
 
