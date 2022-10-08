@@ -1,26 +1,78 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost');
-/* @import "./base.css"; */
+
+:root {
+    --bg-dark: #0D1B2A;
+    --bg-dark-soft: #415A77;
+    --bg-dark-mute: #778DA9;
+    --bg-dark-text: #E0E1DD;
+
+    --bg-color: #FFFFFF;
+    --bg-alt-light: #F5F6F7;
+    --bg-alt-light-2: #EFF1F2;
+    --bg-accent: #f56a6a;
+    --text-color: #3D4449;
+    --text-light: #7F888F;
+}
+
+/* semantic color variables for this project */
+:root {
+    --color-background: var(--bg-color);
+    --color-background-alt: var(--bg-alt-light);
+    --color-background-alt-2: var(--bg-alt-light-2);
+    --color-accent: var(--bg-accent);
+    --color-text: var(--text-color);
+    --color-text-lite: var(--text-light);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
 
 body {
-    font-family: 'Jost', sans-serif;
+   min-height: 100vh;
+   margin: 0 7.5% 0 7.5%;
+   color: var(--color-text-lite);
+   background: var(--color-background);
+   transition: color 0.5s, background-color 0.5s;
+   line-height: 1.6;
+   font-family: 'Jost', sans-serif;;
+   font-size: 15px;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    "header header header"
-    "left-sidebar main right-sidebar"
-    "footer footer footer";
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.header {
-    grid-area: header;
+a {
+  text-decoration: none;
+  color: var(--color-text);
 }
-.main {
-    grid-area: main;
-}
-.footer {
-    grid-area: footer;
+
+.blog-btn {
+  appearance: none;
+  background-color: transparent;
+  border-radius: .375em;
+  border: 0;
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+  color: var(--color-accent);
+  cursor: pointer;
+  display: inline-block;
+  font-size: .8em;
+  height: 3.5em;
+  line-height: 3.5em;
+  padding: 0 2.5em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
 }

@@ -1,32 +1,104 @@
-<template>
-    <h2>Most Recent</h2>
-    <p class="post-title">{{ title }}</p>
-    <p class="post-body" v-html="body"></p>
-</template>
-
 <script setup>
-    import { ref } from 'vue'
-    import { getFirestore, collection, query, orderBy, limit, where, getDocs } from 'firebase/firestore/lite'
-    import { marked } from 'marked'
+  import ArticleSummary from './ArticleSummary.vue';
+  import { ref } from 'vue';
+  import { getFirestore, collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore/lite'
+  
+  const db = getFirestore()
 
-    const title = ref('')
-    const body = ref('')
+  const most_recent = ref([])
 
-    const db = getFirestore()
-    const q = query(collection(db, 'articles'), orderBy('date', 'desc'), where('article_type', '==', 'post'), limit(1))
-    const snapshot = await getDocs(q)
-    snapshot.forEach((doc) => {
-        const data = doc.data()
-        title.value = data.title
-        // can create a marked renderer to add custom html rendering to the articles
-        body.value = marked.parse(data.content)
-    })
+  const articlesRef = collection(db, 'articles')
+  const mostRecentQuery = query(articlesRef, where('article_type', '==', 'post'), orderBy('date', 'desc'), limit(3))
+  const qs = await getDocs(mostRecentQuery)
+  qs.forEach((doc) => {
+    most_recent.value.push(doc.data())
+  })
+
+  let slide_idx = 0;
+
+  runSlideshow()
+
+  function showSlide(idx) {
+    if (idx > 2) { slide_idx = 0 }
+    else if (idx < 0) { slide_idx = 2 }
+    else { slide_idx = idx }
+    const article_elements = document.getElementsByClassName('recent')
+    for (let i  = 0; i < article_elements.length; i++) { article_elements[i].style.display = 'none'}
+    article_elements[slide_idx].style.display = 'block'
+  }
+
+  function runSlideshow() {
+    const article_elements = document.getElementsByClassName('recent')
+    const dots_elements = document.getElementsByClassName('dot')
+    if (article_elements.length > 0) {
+      for (let i  = 0; i < article_elements.length; i++) {
+        article_elements[i].style.display = 'none'
+        dots_elements[i].classList.remove('active')
+      }
+      article_elements[slide_idx].style.display = 'block'
+      dots_elements[slide_idx].classList.add('active')
+      slide_idx++
+      if (slide_idx >= article_elements.length) { slide_idx = 0 }
+      setTimeout(runSlideshow, 5000)
+    } else {
+      setTimeout(runSlideshow, 200)
+    }
+  }
 </script>
 
+<template>
+  <div class="most-recent-container">
+    <a href="">Most Recent</a>
+    <div class="slider">
+      <div class="most-recent-list">
+        <ArticleSummary v-for="article in most_recent" :content="article.content" :date="article.date" :title="article.title"
+        :ups="article.ups" :parent="article.parent" :comments="article.comments"></ArticleSummary>
+      </div>
+      <div>
+        <span v-for="(_, dot_idx) in most_recent" class="dot" @click="showSlide(dot_idx)"></span>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style scoped>
-    .post-body {
-        height: 150px;
-        overflow-y: scroll;
-    }
+  .most-recent-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .most-recent-list {
+    flex-direction: row;
+  }
+
+  .slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .blog-btn {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .recent {
+    display: none;
+  }
+
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
 </style>
-    
