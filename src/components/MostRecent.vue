@@ -11,7 +11,7 @@
   const mostRecentQuery = query(articlesRef, where('article_type', '==', 'post'), orderBy('date', 'desc'), limit(3))
   const qs = await getDocs(mostRecentQuery)
   qs.forEach((doc) => {
-    most_recent.value.push(doc.data())
+    most_recent.value.push({ id: doc.id, data: doc.data() })
   })
 
   let slide_idx = 0;
@@ -51,8 +51,8 @@
     <a href="">Most Recent</a>
     <div class="slider">
       <div class="most-recent-list">
-        <ArticleSummary v-for="article in most_recent" :content="article.content" :date="article.date" :title="article.title"
-        :ups="article.ups" :parent="article.parent" :comments="article.comments"></ArticleSummary>
+        <ArticleSummary v-for="article in most_recent" :content="article.data.content" :date="article.data.date" :title="article.data.title"
+        :ups="article.data.ups" :parent="article.data.parent" :comments="article.data.comments" :id="article.id"></ArticleSummary>
       </div>
       <div>
         <span v-for="(_, dot_idx) in most_recent" class="dot" @click="showSlide(dot_idx)"></span>
