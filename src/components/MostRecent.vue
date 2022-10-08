@@ -2,6 +2,7 @@
   import ArticleSummary from './ArticleSummary.vue';
   import { ref } from 'vue';
   import { getFirestore, collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore/lite'
+  
   const db = getFirestore()
 
   const most_recent = ref([])
