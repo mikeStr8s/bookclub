@@ -38,7 +38,7 @@
       <a href="#" v-if="isLoggedIn" @click="logout">Logout</a>
     </nav>
   </header>
-  <RouterView />
+  <Suspense><RouterView /></Suspense>
   <footer class="footer">
     <nav>
       <RouterLink to="/">Home</RouterLink>

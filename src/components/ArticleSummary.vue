@@ -8,7 +8,8 @@
     title: String,
     ups: Number,
     parent: String,
-    comments: Number
+    comments: Number,
+    id: String
   })
 
   const content = ref('')
@@ -30,7 +31,8 @@
     <span class="date">{{ date }}</span>
     <div class="content-container" v-html="marked.parse(content)"></div>
     <div class="article-summary">
-      <a href="">{{ props.comments }} Comment/s</a>
+      <RouterLink :to="{ name: 'article', params: { id: props.id }}">{{ props.comments }} Comment/s</RouterLink>
+      <!-- <a :href="`article/${props.id}`">{{ props.comments }} Comment/s</a> -->
       <!-- <input type="checkbox" name="ups-input" id="ups-input"> -->
       <span>{{ props.ups }} ↑</span>
     </div>

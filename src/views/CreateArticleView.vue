@@ -48,12 +48,12 @@
   flex-direction: row;
 }
 
-.text-input {
-  flex-grow: 1;
+textarea {
+  width: 50%;
 }
 
 .rendered-text {
-  flex-grow: 1;
+  width: 50%;
 }
 
 .marked-text {
